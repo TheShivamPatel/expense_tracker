@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
-      home: Expenses(),
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const Expenses(),
+      theme: ThemeData(useMaterial3: true),
     ),
   );
 }

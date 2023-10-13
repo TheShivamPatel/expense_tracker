@@ -16,7 +16,7 @@ class _ExpensesState extends State<Expenses> {
   final List<ExpensesModel> _dummyList = [
     ExpensesModel(
       title: 'Flutter course',
-      amount: 350.5,
+      amount: 350.5424,
       date: DateTime.now(),
       category: Category.work,
     ),
@@ -31,19 +31,33 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Expense Tracker'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.add,
+            ),
+          )
+        ],
+      ),
       body: Column(
         children: [
-          Card(
+          const Card(
             elevation: 2,
-            margin: const EdgeInsets.all(20),
-            shape: const RoundedRectangleBorder(
+            margin: EdgeInsets.all(20),
+            shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15))),
-            child: Container(
+            child: SizedBox(
               height: 200,
               width: double.infinity,
             ),
           ),
-          Expanded(child: ExpenseList(expenseList: _dummyList,)),
+          Expanded(
+              child: ExpenseList(
+            expenseList: _dummyList,
+          )),
         ],
       ),
     );
