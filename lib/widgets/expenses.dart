@@ -14,25 +14,17 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
-  final List<ExpensesModel> _dummyList = [
-    ExpensesModel(
-      title: 'Flutter course',
-      amount: 350.5424,
-      date: DateTime.now(),
-      category: Category.work,
-    ),
-    ExpensesModel(
-      title: 'Cinema',
-      amount: 250.2,
-      date: DateTime.now(),
-      category: Category.leisure,
-    ),
-  ];
+  final List<ExpensesModel> _dummyList = [];
 
-  void addExpenseToList(
-      ExpensesModel expense) {
+  void addExpenseToList(ExpensesModel expense) {
     setState(() {
       _dummyList.add(expense);
+    });
+  }
+
+  void removeExpenseToList(ExpensesModel expense) {
+    setState(() {
+      _dummyList.remove(expense);
     });
   }
 
@@ -80,6 +72,7 @@ class _ExpensesState extends State<Expenses> {
           Expanded(
               child: ExpenseList(
             expenseList: _dummyList,
+            removeExpense: removeExpenseToList,
           )),
         ],
       ),

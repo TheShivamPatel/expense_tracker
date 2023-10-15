@@ -59,7 +59,7 @@ class _NewExpenseState extends State<NewExpense> {
 
     // ....
     widget.newExpense( ExpensesModel( title:  _titleController.text , amount: enteredAmount , date: _selectedDate! ,category: _selectedCategory));
-    return Navigator.pop(context);
+    Navigator.pop(context);
   }
 
   @override
@@ -72,12 +72,9 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 35),
       child: Column(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
           TextField(
             controller: _titleController,
             maxLength: 50,
