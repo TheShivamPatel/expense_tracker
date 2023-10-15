@@ -10,7 +10,6 @@ class ExpensesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      color: Colors.white70,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
