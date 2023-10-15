@@ -30,16 +30,9 @@ class _ExpensesState extends State<Expenses> {
   ];
 
   void addExpenseToList(
-      String title, double amount, DateTime date, Category category) {
+      ExpensesModel expense) {
     setState(() {
-      _dummyList.add(
-        ExpensesModel(
-          title: title,
-          amount: amount,
-          date: date,
-          category: category,
-        ),
-      );
+      _dummyList.add(expense);
     });
   }
 
