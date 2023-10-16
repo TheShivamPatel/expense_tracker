@@ -14,18 +14,34 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
-  final List<ExpensesModel> _dummyList = [];
+  final List<ExpensesModel> _expenseList = [];
 
   void addExpenseToList(ExpensesModel expense) {
     setState(() {
-      _dummyList.add(expense);
+      _expenseList.add(expense);
     });
   }
 
   void removeExpenseToList(ExpensesModel expense) {
+    final expenseIndex = _expenseList.indexOf(expense);
     setState(() {
-      _dummyList.remove(expense);
+      _expenseList.remove(expense);
     });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Expense deleted.'),
+        duration: const Duration(seconds: 3),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _expenseList.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
   }
 
   void _openAddExpenseOverlay() {
@@ -45,6 +61,17 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('No expenses found. Start adding some!'),
+    );
+
+    if (_expenseList.isNotEmpty) {
+      mainContent = ExpenseList(
+        expenseList: _expenseList,
+        removeExpense: removeExpenseToList,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense Tracker'),
@@ -61,7 +88,7 @@ class _ExpensesState extends State<Expenses> {
         children: [
           const Card(
             elevation: 2,
-            margin: EdgeInsets.all(20),
+            // margin: EdgeInsets.all(20),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15))),
             child: SizedBox(
@@ -69,11 +96,7 @@ class _ExpensesState extends State<Expenses> {
               width: double.infinity,
             ),
           ),
-          Expanded(
-              child: ExpenseList(
-            expenseList: _dummyList,
-            removeExpense: removeExpenseToList,
-          )),
+          Expanded(child: mainContent),
         ],
       ),
     );

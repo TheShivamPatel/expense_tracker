@@ -9,7 +9,6 @@ class ExpensesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -17,7 +16,7 @@ class ExpensesItem extends StatelessWidget {
         leading: Icon(categoryIcons[expenses.category]),
         title: Text(
           expenses.title,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         subtitle: Text(
           '₹${expenses.amount.toStringAsFixed(2)}',
