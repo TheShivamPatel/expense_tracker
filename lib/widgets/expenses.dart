@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenses_list/expense_list.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
@@ -86,16 +87,7 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          const Card(
-            elevation: 2,
-            // margin: EdgeInsets.all(20),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15))),
-            child: SizedBox(
-              height: 200,
-              width: double.infinity,
-            ),
-          ),
+          Chart(expenses: _expenseList),
           Expanded(child: mainContent),
         ],
       ),
